@@ -1,0 +1,451 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.3 (Debian 13.3-1.pgdg100+1)
+-- Dumped by pg_dump version 13.3 (Debian 13.3-1.pgdg100+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: citext; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION citext; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings';
+
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: channel; Type: TABLE; Schema: public; Owner: post
+--
+
+CREATE TABLE public.channel (
+    name character varying(255),
+    server character varying(255),
+    channelid bigint,
+    guildid bigint
+);
+
+
+ALTER TABLE public.channel OWNER TO post;
+
+--
+-- Name: preshop; Type: TABLE; Schema: public; Owner: post
+--
+
+CREATE TABLE public.preshop (
+    id integer NOT NULL,
+    name character varying(255),
+    img character varying(255),
+    categories integer,
+    price integer
+);
+
+
+ALTER TABLE public.preshop OWNER TO post;
+
+--
+-- Name: preshop_id_seq; Type: SEQUENCE; Schema: public; Owner: post
+--
+
+CREATE SEQUENCE public.preshop_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.preshop_id_seq OWNER TO post;
+
+--
+-- Name: preshop_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: post
+--
+
+ALTER SEQUENCE public.preshop_id_seq OWNED BY public.preshop.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: post
+--
+
+CREATE TABLE public.schema_migrations (
+    version bigint NOT NULL,
+    inserted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO post;
+
+--
+-- Name: tasks; Type: TABLE; Schema: public; Owner: post
+--
+
+CREATE TABLE public.tasks (
+    id bigint NOT NULL,
+    name character varying(255) NOT NULL,
+    project character varying(255) NOT NULL,
+    creator integer NOT NULL,
+    owner integer NOT NULL,
+    inserted_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.tasks OWNER TO post;
+
+--
+-- Name: tasks_id_seq; Type: SEQUENCE; Schema: public; Owner: post
+--
+
+CREATE SEQUENCE public.tasks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tasks_id_seq OWNER TO post;
+
+--
+-- Name: tasks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: post
+--
+
+ALTER SEQUENCE public.tasks_id_seq OWNED BY public.tasks.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: post
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    email public.citext NOT NULL,
+    hashed_password character varying(255) NOT NULL,
+    confirmed_at timestamp(0) without time zone,
+    inserted_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO post;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: post
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO post;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: post
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: users_tokens; Type: TABLE; Schema: public; Owner: post
+--
+
+CREATE TABLE public.users_tokens (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    token bytea NOT NULL,
+    context character varying(255) NOT NULL,
+    sent_to character varying(255),
+    inserted_at timestamp(0) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.users_tokens OWNER TO post;
+
+--
+-- Name: users_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: post
+--
+
+CREATE SEQUENCE public.users_tokens_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_tokens_id_seq OWNER TO post;
+
+--
+-- Name: users_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: post
+--
+
+ALTER SEQUENCE public.users_tokens_id_seq OWNED BY public.users_tokens.id;
+
+
+--
+-- Name: preshop id; Type: DEFAULT; Schema: public; Owner: post
+--
+
+ALTER TABLE ONLY public.preshop ALTER COLUMN id SET DEFAULT nextval('public.preshop_id_seq'::regclass);
+
+
+--
+-- Name: tasks id; Type: DEFAULT; Schema: public; Owner: post
+--
+
+ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: post
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: users_tokens id; Type: DEFAULT; Schema: public; Owner: post
+--
+
+ALTER TABLE ONLY public.users_tokens ALTER COLUMN id SET DEFAULT nextval('public.users_tokens_id_seq'::regclass);
+
+
+--
+-- Data for Name: channel; Type: TABLE DATA; Schema: public; Owner: post
+--
+
+COPY public.channel (name, server, channelid, guildid) FROM stdin;
+bienvenue-et-règles	Dev Lks	774381917382115351	774381917382115348
+général	serveur test bot	904660295857885197	904660295857885194
+ping	serveur test bot	904828189518462976	904660295857885194
+final-test	serveur test bot	905153069648588833	904660295857885194
+other	serveur test bot	905154736058151093	904660295857885194
+alfex	serveur test bot	905156575843475548	904660295857885194
+lksdev	serveur test bot	905194066315202671	904660295857885194
+new-channel	serveur test bot	905398215216615424	904660295857885194
+minecraft	serveur test bot	905407919162544128	904660295857885194
+annonces	DevGame	774381917382115352	774381917382115348
+général	DevGame	774381917382115354	774381917382115348
+événements	DevGame	774381917382115355	774381917382115348
+idées-et-commentaires	DevGame	774381917382115356	774381917382115348
+gare	DevGame	774551450973241384	774381917382115348
+aide	DevGame	774554135940825129	774381917382115348
+html-css	DevGame	774553806172061718	774381917382115348
+javascript	DevGame	774553867303649281	774381917382115348
+php	DevGame	774553690735771668	774381917382115348
+python	DevGame	774554086577405973	774381917382115348
+django-framework	DevGame	797217076787544174	774381917382115348
+terminal	DevGame	774554181380997141	774381917382115348
+raf	serveur test bot	905538302071930931	904660295857885194
+🎃reglement🎃	-~CRACK-~-CENTER~-	898269867680092170	898257915092291614
+🎃annonce-📢❗	-~CRACK-~-CENTER~-	898270529432223745	898257915092291614
+🎃nouveautés🎃	-~CRACK-~-CENTER~-	898856769269432341	898257915092291614
+sponsort	-~CRACK-~-CENTER~-	898572290671915118	898257915092291614
+tirage-au-sort	-~CRACK-~-CENTER~-	898572047893016616	898257915092291614
+suggestions-et-questions	-~CRACK-~-CENTER~-	898565092755513406	898257915092291614
+demande-de-partenariat	-~CRACK-~-CENTER~-	902235779747684392	898257915092291614
+notre-pub	-~CRACK-~-CENTER~-	900649169872646154	898257915092291614
+votre-pub	-~CRACK-~-CENTER~-	900649278920339456	898257915092291614
+partenariat	-~CRACK-~-CENTER~-	902236066826846279	898257915092291614
+🎃général🎃	-~CRACK-~-CENTER~-	898257915092291617	898257915092291614
+musique🎶🎧	-~CRACK-~-CENTER~-	898276325570248714	898257915092291614
+📷photo-video-🎥	-~CRACK-~-CENTER~-	898278551026012193	898257915092291614
+🎃commande🎃	-~CRACK-~-CENTER~-	898565169989439519	898257915092291614
+aide	-~CRACK-~-CENTER~-	898856597730787328	898257915092291614
+niveaux	-~CRACK-~-CENTER~-	901390331797458964	898257915092291614
+sans-micro-🔇	-~CRACK-~-CENTER~-	898261105774845972	898257915092291614
+🌍-arrivée	-~CRACK-~-CENTER~-	898268998460915772	898257915092291614
+🛫-depart	-~CRACK-~-CENTER~-	898269219496554526	898257915092291614
+youtube🔺	-~CRACK-~-CENTER~-	898275512852574248	898257915092291614
+twitch🔹	-~CRACK-~-CENTER~-	898275628992843838	898257915092291614
+minecraft-pocket-edition	-~CRACK-~-CENTER~-	901761783851790346	898257915092291614
+gta-san-adreas	-~CRACK-~-CENTER~-	902299080686993428	898257915092291614
+totally-accurate-battle-simulator-tabs	-~CRACK-~-CENTER~-	898851877532356658	898257915092291614
+the-forest	-~CRACK-~-CENTER~-	898912055837474846	898257915092291614
+ravenfield	-~CRACK-~-CENTER~-	898571092560584775	898257915092291614
+beam-ng-drive	-~CRACK-~-CENTER~-	899905112019976222	898257915092291614
+forts	-~CRACK-~-CENTER~-	899905198531686411	898257915092291614
+astroneer	-~CRACK-~-CENTER~-	899905253716152320	898257915092291614
+subnautica	-~CRACK-~-CENTER~-	899905441222504458	898257915092291614
+spore	-~CRACK-~-CENTER~-	901761831079653406	898257915092291614
+besiege	-~CRACK-~-CENTER~-	902298999896293457	898257915092291614
+minecraft	-~CRACK-~-CENTER~-	903229522739085322	898257915092291614
+poppy-playtime	-~CRACK-~-CENTER~-	903750818631659601	898257915092291614
+hello-neighbor	-~CRACK-~-CENTER~-	903751243388833803	898257915092291614
+carrion	-~CRACK-~-CENTER~-	903916626271932436	898257915092291614
+mods-pour-ravenfield	-~CRACK-~-CENTER~-	898998560211750912	898257915092291614
+emulateur-wii-et-gamecube	-~CRACK-~-CENTER~-	903278765923254303	898257915092291614
+animal-crossing	-~CRACK-~-CENTER~-	903674657830494208	898257915092291614
+zelda-twilight-princess	-~CRACK-~-CENTER~-	904455467831558225	898257915092291614
+🎃general	-~CRACK-~-CENTER~-	898446483412635648	898257915092291614
+commande-admin	-~CRACK-~-CENTER~-	898446993947525160	898257915092291614
+avis-sur-les-jeux	-~CRACK-~-CENTER~-	904460115384610816	898257915092291614
+\.
+
+
+--
+-- Data for Name: preshop; Type: TABLE DATA; Schema: public; Owner: post
+--
+
+COPY public.preshop (id, name, img, categories, price) FROM stdin;
+1	Sopalin	sopalin.webp	1	2
+\.
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: post
+--
+
+COPY public.schema_migrations (version, inserted_at) FROM stdin;
+20211028204341	2021-10-28 20:44:01
+20211029150102	2021-10-29 15:11:26
+20211029152414	2021-10-29 15:30:50
+\.
+
+
+--
+-- Data for Name: tasks; Type: TABLE DATA; Schema: public; Owner: post
+--
+
+COPY public.tasks (id, name, project, creator, owner, inserted_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: post
+--
+
+COPY public.users (id, email, hashed_password, confirmed_at, inserted_at, updated_at) FROM stdin;
+1	lukas.soigneux@gmail.com	$2b$12$FEVEbH8Q0Ewt6WP54WyFNO1sr0lC7zoCbo49QCuW8JPx69g11i5Hu	\N	2021-10-28 20:45:20	2021-10-28 20:45:20
+\.
+
+
+--
+-- Data for Name: users_tokens; Type: TABLE DATA; Schema: public; Owner: post
+--
+
+COPY public.users_tokens (id, user_id, token, context, sent_to, inserted_at) FROM stdin;
+1	1	\\xa1ade972f3cb6784ef53f0095f41a729aa3f0b90d464f0ab15b992ab71772455	confirm	lukas.soigneux@gmail.com	2021-10-28 20:45:20
+2	1	\\xcb6308f9f67b5d15fc034f67f518353c09eba4daeeb8a89e52b9a4d980b756df	session	\N	2021-10-28 20:45:20
+\.
+
+
+--
+-- Name: preshop_id_seq; Type: SEQUENCE SET; Schema: public; Owner: post
+--
+
+SELECT pg_catalog.setval('public.preshop_id_seq', 1, true);
+
+
+--
+-- Name: tasks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: post
+--
+
+SELECT pg_catalog.setval('public.tasks_id_seq', 1, false);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: post
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 1, true);
+
+
+--
+-- Name: users_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: post
+--
+
+SELECT pg_catalog.setval('public.users_tokens_id_seq', 2, true);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: post
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: tasks tasks_pkey; Type: CONSTRAINT; Schema: public; Owner: post
+--
+
+ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT tasks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: post
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_tokens users_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: post
+--
+
+ALTER TABLE ONLY public.users_tokens
+    ADD CONSTRAINT users_tokens_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_email_index; Type: INDEX; Schema: public; Owner: post
+--
+
+CREATE UNIQUE INDEX users_email_index ON public.users USING btree (email);
+
+
+--
+-- Name: users_tokens_context_token_index; Type: INDEX; Schema: public; Owner: post
+--
+
+CREATE UNIQUE INDEX users_tokens_context_token_index ON public.users_tokens USING btree (context, token);
+
+
+--
+-- Name: users_tokens_user_id_index; Type: INDEX; Schema: public; Owner: post
+--
+
+CREATE INDEX users_tokens_user_id_index ON public.users_tokens USING btree (user_id);
+
+
+--
+-- Name: users_tokens users_tokens_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: post
+--
+
+ALTER TABLE ONLY public.users_tokens
+    ADD CONSTRAINT users_tokens_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

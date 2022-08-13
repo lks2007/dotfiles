@@ -1,0 +1,7 @@
+[Bookmarks]
+[Recent]
+/home/lks/source/
+!Home
+/home/lks/
+!Downloads
+/home/lks/Téléchargements/

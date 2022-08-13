@@ -1,0 +1,1 @@
+{"net":{"http_server_properties":{"broken_alternative_services":[{"broken_count":1,"host":"r2---sn-4gxx-25gy.gvt1.com","isolation":[],"port":443,"protocol_str":"quic"}],"servers":[{"isolation":[],"server":"https://redirector.gvt1.com","supports_spdy":true}],"version":5},"network_qualities":{"CAASABiAgICA+P////8B":"4G"}}}

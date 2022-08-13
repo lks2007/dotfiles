@@ -1,0 +1,575 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+;background = ${xrdb:color0:#222}
+background = #16151f
+background-alt = #444
+;foreground = ${xrdb:color7:#222}
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+blue = #2980b9
+green = #27ae60
+purple = #95a5a6
+
+[bar/default]
+monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 25
+;offset-x = 1%
+;offset-y = 1%
+radius = 0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+
+font-0 = DejaVu Sans:size=9;2
+font-1 = fixed:pixelsize=9;2
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-3 = Font Awesome 6 Free Solid:style=Solid:size=10;2
+font-4 = Font Awesome 6 Free Regular:style=Regular:size=10;2
+font-5 = Font Awesome 6 Brands Regular:style=Regular:size=10;2
+font-6 = siji:pixelsize=10;2
+
+
+modules-left = i3
+modules-center =
+modules-right = netstat wlan cpu memory battery battery2 temperature date
+
+
+tray-position = none
+tray-padding = 2
+;tray-background = #0063ff
+
+separator = 
+
+;wm-restack = bspwm
+wm-restack = i3
+
+override-redirect = false
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/second]
+monitor = ${env:MONITOR:eDP-1}
+width = 100%
+height = 25
+;offset-x = 1%
+;offset-y = 1%
+radius = 0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+
+font-0 = DejaVu Sans:size=10;2
+font-1 = fixed:pixelsize=10;2
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-3 = Font Awesome 6 Free Solid:style=Solid:size=11;2
+font-4 = Font Awesome 6 Free Regular:style=Regular:size=11;2
+font-5 = Font Awesome 6 Brands Regular:style=Regular:size=11;2
+font-6 = siji:pixelsize=10;2
+
+
+modules-left = i3
+modules-center = 
+modules-right = netstat wlan cpu memory battery battery2 temperature date
+
+
+tray-position = none
+tray-padding = 2
+;tray-background = #0063ff
+
+separator =
+
+;wm-restack = bspwm
+wm-restack = i3
+
+override-redirect = false
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+;##############################################################################################################################################
+; ################################################################ i3
+;##############################################################################################################################################
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = false
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = ${colors.background}
+label-focused-underline= ${colors.blue}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+;label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+;label-separator = |
+ws-icon-0 = 1:Web;
+ws-icon-1 = 2:Terms;
+ws-icon-2 = 3:Dev;
+ws-icon-3 = 4:Spotify;
+ws-icon-default = 
+
+
+;##############################################################################################################################################
+; ################################################################ CPU
+;##############################################################################################################################################
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.blue}
+label = %percentage%%
+
+;##############################################################################################################################################
+; ################################################################ Memory
+;##############################################################################################################################################
+[module/memory]
+type = internal/memory
+interval = 5
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+label = %gb_free%
+
+;##############################################################################################################################################
+; ################################################################ Filesystem
+;##############################################################################################################################################
+; [module/filesystem]
+; type = internal/fs
+; interval = 60
+
+; mount-0 = /
+
+; label-mounted =  Free: %free%
+; label-mounted-alt =  Free: %free%
+; label-unmounted = %mountpoint% not mounted
+; label-unmounted-foreground = ${colors.foreground-alt}
+
+
+;##############################################################################################################################################
+; ################################################################ Netstatwifi
+;##############################################################################################################################################
+; [module/netstatwifi]
+; type = internal/network
+; interface = wlan0
+; interval = 3.0
+; label-connected = "  %upspeed%  %downspeed% "
+; format-disconnected = <label-disconnected>
+; label-disconnected = ""
+
+;##############################################################################################################################################
+; ################################################################ wifi
+;##############################################################################################################################################
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+label-connected-foreground = #16a085
+label-connected =  %essid%  
+
+format-disconnected = <label-disconnected>
+label-disconnected = ""
+label-disconnected-foreground = #16a085
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+;ramp-signal-foreground = #16a085
+
+;##############################################################################################################################################
+; ################################################################ Netstat
+;##############################################################################################################################################
+[module/netstat]
+type = internal/network
+interface = wlan0
+interval = 3.0
+label-connected = " %upspeed%  %downspeed% "
+label-connected-foreground = #1e81b0
+
+
+
+;##############################################################################################################################################
+; ################################################################ ethernet
+;##############################################################################################################################################
+; [module/eth]
+; type = internal/network
+; interface = en5ps0
+; interval = 3.0
+
+; ;format-connected-underline = #55aa55
+; format-connected-prefix = " "
+; format-connected-prefix-foreground = ${colors.foreground-alt}
+; label-connected =  %local_ip%
+
+; format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+;##############################################################################################################################################
+; ################################################################ battery
+;##############################################################################################################################################
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+poll-interval = 50
+
+format-charging = <animation-charging> <label-charging>
+;format-charging-underline = #ffb52a
+
+format-discharging = <animation-discharging> <label-discharging>
+;format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+;format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = #6ab04c
+;format-full-underline = ${self.format-charging-underline}
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.green}
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+animation-discharging-foreground = ${colors.green}
+animation-discharging-framerate = 750
+
+;##############################################################################################################################################
+; ################################################################ battery
+;##############################################################################################################################################
+[module/battery2]
+type = internal/battery
+battery = BAT1
+adapter = AC
+full-at = 98
+poll-interval = 50
+
+format-charging = <animation-charging> <label-charging>
+;format-charging-underline = #ffb52a
+
+format-discharging = <animation-discharging> <label-discharging>
+;format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+;format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = #6ab04c
+;format-full-underline = ${self.format-charging-underline}
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.green}
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+animation-discharging-foreground = ${colors.green}
+animation-discharging-framerate = 750
+
+;##############################################################################################################################################
+; ################################################################ date
+;##############################################################################################################################################
+[module/date]
+type = internal/date
+interval = 5
+
+date = " "
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M
+
+format-prefix = 
+format-prefix-foreground = ${colors.blue}
+;format-underline = #0a6cf5
+
+label = %date% %time%
+
+;##############################################################################################################################################
+; ################################################################ alsa
+;##############################################################################################################################################
+; [module/alsa]
+; type = internal/alsa
+
+; interval = 5
+; master-soundcard = default
+; master-mixer = Master
+
+; ;mapped = true
+
+; format-volume = <ramp-volume> <label-volume> 
+; label-volume = %percentage%%
+; label-volume-foreground = ${root.foreground}
+
+; format-muted-prefix = " "
+; format-muted-foreground = #eb4d4b
+; label-muted = muted
+
+; ramp-volume-0 = 
+; ramp-volume-1 = 
+; ramp-volume-2 = 
+
+
+;##############################################################################################################################################
+; ################################################################ powermenu
+;##############################################################################################################################################
+; [module/powermenu]
+; type = custom/script
+
+; interval = 1
+; format = <label>
+; format-background = ${colors.background}
+; format-foreground = ${colors.blue}
+; format-prefix = " "
+
+; label = "ldmd"
+
+; click-left = $HOME/.config/rofi/bin/applet_powermenu
+
+;##############################################################################################################################################
+;################################################################### extraconf not used #######################################################
+;##############################################################################################################################################
+
+;##############################################################################################################################################
+; ################################################################ mpd
+;##############################################################################################################################################
+; [module/mpd]
+; type = internal/mpd
+; format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+; icon-prev = 
+; icon-stop = 
+; icon-play = 
+; icon-pause = 
+; icon-next = 
+
+; label-song-maxlen = 25
+; label-song-ellipsis = true
+
+;##############################################################################################################################################
+; ################################################################ temperature
+;##############################################################################################################################################
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+;format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+;format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = #f50a4d
+
+;##############################################################################################################################################
+; ################################################################ pulseaudio
+;##############################################################################################################################################
+; [module/pulseaudio]
+; type = internal/pulseaudio
+
+; format-volume = <label-volume> <bar-volume>
+; label-volume = VOL %percentage%%
+; label-volume-foreground = ${root.foreground}
+
+; label-muted = 🔇 muted
+; label-muted-foreground = #666
+
+; bar-volume-width = 10
+; bar-volume-foreground-0 = #55aa55
+; bar-volume-foreground-1 = #55aa55
+; bar-volume-foreground-2 = #55aa55
+; bar-volume-foreground-3 = #55aa55
+; bar-volume-foreground-4 = #55aa55
+; bar-volume-foreground-5 = #f5a70a
+; bar-volume-foreground-6 = #ff5555
+; bar-volume-gradient = false
+; bar-volume-indicator = |
+; bar-volume-indicator-font = 2
+; bar-volume-fill = ─
+; bar-volume-fill-font = 2
+; bar-volume-empty = ─
+; bar-volume-empty-font = 2
+; bar-volume-empty-foreground = ${colors.foreground-alt}
+
+;##############################################################################################################################################
+; ################################################################ bspwm
+;##############################################################################################################################################
+; [module/bspwm]
+; type = internal/bspwm
+
+; label-focused = %index%
+; label-focused-background = ${colors.background-alt}
+; label-focused-underline= ${colors.primary}
+; label-focused-padding = 2
+
+; label-occupied = %index%
+; label-occupied-padding = 2
+
+; label-urgent = %index%!
+; label-urgent-background = ${colors.alert}
+; label-urgent-padding = 2
+
+; label-empty = %index%
+; label-empty-foreground = ${colors.foreground-alt}
+; label-empty-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+;##############################################################################################################################################
+; ################################################################ xwindow
+;##############################################################################################################################################
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+;##############################################################################################################################################
+; ################################################################ Keyboard
+;##############################################################################################################################################
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.purple}
+;format-prefix-underline = ${colors.secondary}
+
+label-layout = %layout%
+;label-layout-underline = ${colors.secondary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+;label-indicator-underline = ${colors.secondary}
+

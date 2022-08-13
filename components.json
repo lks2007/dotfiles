@@ -1,0 +1,38 @@
+{
+    "ANGLAIS LV1": [
+        "Anglais", "https://images.unsplash.com/photo-1603989872628-7880d83bb581?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=2400", "https://i.postimg.cc/TPzsStpy/unnamed.jpg", "🇬🇧"
+    ],
+    "EDUCATION MUSICALE": [
+        "Musique", "https://cdn.radiofrance.fr/s3/cruiser-production/2016/10/5d452cbc-ad81-47ee-a4cd-4c413c7be41a/600x337_partition.jpg", "https://www.ville-vichy.fr/uploads/media/contenu/0001/03/thumb_2074_contenu_big.jpeg", "🎻"
+    ],
+    "ESPAGNOL LV2": [
+        "Espagnol", "https://clic-campus.fr/wp-content/uploads/2021/06/Comment_developper_espagnol_professionel.jpg", "https://centresocial-chemille.asso.fr/wp-content/uploads/2019/10/cours-espagnol-2019-1024x519.png", "🇪🇸"
+    ],
+    "FRANCAIS": [
+        "Français", "https://i-mom.unimedias.fr/2020/09/16/le-francais-va-t-il-disparaitre-un-jour.jpg", "https://www.letudiant.fr/static/uploads/mediatheque/ETU_ETU/4/9/2295249-adobestock-227810706-1-766x438.jpg", "🇫🇷"
+    ],
+    "HISTOIRE-GEOGRAPHIE": [
+        "Histoire - Géo", "https://images.unsplash.com/photo-1574088768814-c71125083959?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=2400", "https://i.f1g.fr/media/eidos/805x453_crop/2019/06/17/XVM0d88427a-86cd-11e9-a0e8-8cf3cd0d8fe4.jpg", "🪖"
+    ],
+    "LCE ANGLAIS": [
+        "Lce", "https://beauregard-annecy.ent.auvergnerhonealpes.fr/lectureFichiergw.do?ID_FICHIER=69", "https://i.postimg.cc/RZ8p6g1P/hqdefault.jpg", "🇪🇺"
+    ],
+    "MATHEMATIQUES": [
+        "Mathématiques", "https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=2400", "https://i.postimg.cc/3NHPythM/9081328-image.jpg", "🎓"
+    ],
+    "PHYSIQUE-CHIMIE": [
+        "Physique - Chimie", "https://www.letudiant.fr/static/uploads/mediatheque/ETU_ETU/4/9/2232849-spe-physique-chimie-766x438.jpg", "https://www.cours-thales.fr/wp-content/uploads/2020/11/physique-chimie.jpg", "🪐"
+    ],
+    "SCIENCES VIE & TERRE": [
+        "Sciences Vie & Terre", "https://i1.wp.com/www.cours-ado.com/wp-content/uploads/2017/12/environmental-protection-326923_1920.jpg?resize=1025%2C683&ssl=1", "https://www.letudiant.fr/static/uploads/mediatheque/ETU_ETU/7/3/1988073-svt-766x438.gif", "🌋"
+    ],
+    "LCA LATIN": [
+        "Latin", "https://www.letudiant.fr/static/uploads/mediatheque/ETU_ETU/5/7/2110957-italieunkel-5-766x438.jpg", "https://www.communautesaintmartin.org/wp-content/uploads/2017/12/latin-classes-los-angeles.jpg", "⛪"
+    ],
+    "TECHNOLOGIE": [
+        "Technologie", "https://resize2.prod.docfr.doc-media.fr/rcrop/1200,678,center-middle/img/var/doctissimo/storage/images/fr/www/sante/news/technologie-cerveau-communication/5653403-1-fre-FR/technologie-cerveau-communication.jpg", "https://www.archireport.com/wp-content/uploads/2019/07/sciences.jpg", "💻"
+    ],
+    "ARTS PLASTIQUES": [
+        "Arts Plastiques", "https://www.culture.gouv.fr/var/culture/storage/images/_aliases/reference/media/dracs/drac-centre/images/politique-et-action-culturelles/statistiques/visuel-arts-plastiques/599680-1-fre-FR/visuel-arts-plastiques.jpg", "https://www.superprof.fr/ressources/wp-content/uploads/2010/04/vocabulaire-creation-art-1200x872.jpg", "🎨"
+    ]
+}
